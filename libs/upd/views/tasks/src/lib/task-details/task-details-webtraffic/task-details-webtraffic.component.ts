@@ -29,7 +29,7 @@ export class TaskDetailsWebtrafficComponent implements OnInit {
 
     this.visitsByPage$.subscribe((visitsByPage) => {
       console.log(visitsByPage);
-    })
+    });
 
     this.currentLang$.subscribe((lang) => {
       this.langLink = lang === EN_CA ? 'en' : 'fr';
@@ -39,15 +39,33 @@ export class TaskDetailsWebtrafficComponent implements OnInit {
           header: this.i18n.service.translate('page-title', lang),
           type: 'link',
           typeParams: { preLink: '/' + this.langLink + '/pages', link: '_id' },
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'url',
           header: this.i18n.service.translate('URL', lang),
           type: 'link',
           typeParams: { link: 'url', external: true },
+          filterConfig: {
+            type: 'text',
+          },
         },
-        { field: 'visits', header: this.i18n.service.translate('visits', lang), pipe: 'number' },
-        { field: 'percentChange', header: this.i18n.service.translate('%-change', lang), pipe: 'percent', type: 'comparison' },
+        {
+          field: 'visits',
+          header: this.i18n.service.translate('visits', lang),
+          pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
+        },
+        {
+          field: 'percentChange',
+          header: this.i18n.service.translate('%-change', lang),
+          pipe: 'percent',
+          type: 'comparison',
+        },
       ];
     });
   }

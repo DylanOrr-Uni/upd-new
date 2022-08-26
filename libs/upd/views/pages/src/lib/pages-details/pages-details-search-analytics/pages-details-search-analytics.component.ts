@@ -6,8 +6,14 @@ import { LocaleId } from '@dua-upd/upd/i18n';
 import { I18nFacade } from '@dua-upd/upd/state';
 import { GetTableProps } from '@dua-upd/utils-common';
 
-type GscSearchTermsColTypes = GetTableProps<PagesDetailsSearchAnalyticsComponent, 'topGSCSearchTerms$'>
-type ReferrerTypeColTypes = GetTableProps<PagesDetailsSearchAnalyticsComponent, 'referrerType$'>
+type GscSearchTermsColTypes = GetTableProps<
+  PagesDetailsSearchAnalyticsComponent,
+  'topGSCSearchTerms$'
+>;
+type ReferrerTypeColTypes = GetTableProps<
+  PagesDetailsSearchAnalyticsComponent,
+  'referrerType$'
+>;
 
 @Component({
   selector: 'upd-page-details-search-analytics',
@@ -34,7 +40,6 @@ export class PagesDetailsSearchAnalyticsComponent implements OnInit {
 
   referrerType$ = this.pageDetailsService.referrerType$;
 
-
   constructor(
     private pageDetailsService: PagesDetailsFacade,
     private i18n: I18nFacade
@@ -54,11 +59,17 @@ export class PagesDetailsSearchAnalyticsComponent implements OnInit {
         {
           field: 'term',
           header: this.i18n.service.translate('search-terms', lang),
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'clicks',
           header: this.i18n.service.translate('clicks', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'change',
@@ -69,17 +80,26 @@ export class PagesDetailsSearchAnalyticsComponent implements OnInit {
           field: 'impressions',
           header: this.i18n.service.translate('impressions', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'ctr',
           header: this.i18n.service.translate('ctr', lang),
           pipe: 'percent',
+          filterConfig: {
+            type: 'percent',
+          },
         },
         {
           field: 'position',
           header: this.i18n.service.translate('position', lang),
           pipe: 'number',
           pipeParam: '1.0-2',
+          filterConfig: {
+            type: 'number',
+          },
         },
       ];
 
@@ -99,11 +119,20 @@ export class PagesDetailsSearchAnalyticsComponent implements OnInit {
       ];
 
       this.referrerTypeCols = [
-        { field: 'type', header: this.i18n.service.translate('type', lang) },
+        {
+          field: 'type',
+          header: this.i18n.service.translate('type', lang),
+          filterConfig: {
+            type: 'text',
+          },
+        },
         {
           field: 'value',
           header: this.i18n.service.translate('visits', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'change',

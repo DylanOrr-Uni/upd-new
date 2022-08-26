@@ -45,25 +45,58 @@ export class OverviewUxTestsComponent implements OnInit {
             preLink: '/' + this.langLink + '/projects',
             link: '_id',
           },
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'testType',
           header: this.i18n.service.translate('Test', lang),
+          filterConfig: {
+            type: 'category',
+            categories: [
+              {
+                name: this.i18n.service.translate('Exploratory', lang),
+                value: 'Exploratory',
+              },
+              {
+                name: this.i18n.service.translate('Baseline', lang),
+                value: 'Baseline',
+              },
+              {
+                name: this.i18n.service.translate('Spot Check', lang),
+                value: 'Spot Check',
+              },
+              {
+                name: this.i18n.service.translate('Baseline, Validation', lang),
+                value: 'Baseline, Validation',
+              },
+            ],
+          },
         },
         {
           field: 'startDate',
           header: this.i18n.service.translate('date', lang),
           pipe: 'date',
           pipeParam: lang === FR_CA ? 'd MMM YYYY' : 'MMM dd, YYYY',
+          filterConfig: {
+            type: 'date',
+          },
         },
         {
           field: 'avgSuccessRate',
           header: this.i18n.service.translate('score', lang),
           pipe: 'percent',
+          filterConfig: {
+            type: 'percent',
+          },
         },
         {
           field: 'totalUsers',
           header: this.i18n.service.translate('number_of_participants', lang),
+          filterConfig: {
+            type: 'number',
+          },
         },
       ];
     });

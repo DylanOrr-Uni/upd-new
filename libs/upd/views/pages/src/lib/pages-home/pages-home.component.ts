@@ -25,17 +25,26 @@ export class PagesHomeComponent implements OnInit {
         {
           field: 'title',
           header: this.i18n.service.translate('Title', lang),
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'url',
           header: this.i18n.service.translate('URL', lang),
           type: 'link',
           typeParam: '_id',
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'visits',
           header: this.i18n.service.translate('visits', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
       ];
     });

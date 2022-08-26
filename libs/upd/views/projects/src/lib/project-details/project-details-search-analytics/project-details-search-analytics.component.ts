@@ -7,8 +7,10 @@ import { EN_CA } from '@dua-upd/upd/i18n';
 import { GetTableProps } from '@dua-upd/utils-common';
 import { ProjectsDetailsFacade } from '../+state/projects-details.facade';
 
-
-type VisitsByPageColTypes = GetTableProps<ProjectDetailsSearchAnalyticsComponent, 'visitsByPage$'>
+type VisitsByPageColTypes = GetTableProps<
+  ProjectDetailsSearchAnalyticsComponent,
+  'visitsByPage$'
+>;
 
 @Component({
   selector: 'upd-project-details-search-analytics',
@@ -55,6 +57,9 @@ export class ProjectDetailsSearchAnalyticsComponent implements OnInit {
           header: this.i18n.service.translate('URL', lang),
           type: 'link',
           typeParams: { preLink: '/' + this.langLink + '/pages', link: '_id' },
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'gscTotalClicks',
@@ -65,6 +70,9 @@ export class ProjectDetailsSearchAnalyticsComponent implements OnInit {
             preLink: '/' + this.langLink + '/pages',
             link: '_id',
             postLink: 'searchanalytics',
+          },
+          filterConfig: {
+            type: 'number',
           },
         },
         {
@@ -77,11 +85,17 @@ export class ProjectDetailsSearchAnalyticsComponent implements OnInit {
             link: '_id',
             postLink: 'searchanalytics',
           },
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'gscTotalCtr',
           header: this.i18n.service.translate('ctr', lang),
           pipe: 'percent',
+          filterConfig: {
+            type: 'percent',
+          },
         },
         {
           field: 'gscTotalPosition',

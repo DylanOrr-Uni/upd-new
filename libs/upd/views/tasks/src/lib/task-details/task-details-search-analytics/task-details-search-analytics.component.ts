@@ -43,30 +43,53 @@ export class TaskDetailsSearchAnalyticsComponent implements OnInit {
           header: this.i18n.service.translate('URL', lang),
           type: 'link',
           typeParams: { preLink: '/' + this.langLink + '/pages', link: '_id' },
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'gscTotalClicks',
           header: this.i18n.service.translate('clicks', lang),
           pipe: 'number',
           type: 'link',
-          typeParams: { preLink: '/' + this.langLink + '/pages', link: '_id', postLink: 'searchanalytics' },
+          typeParams: {
+            preLink: '/' + this.langLink + '/pages',
+            link: '_id',
+            postLink: 'searchanalytics',
+          },
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'gscTotalImpressions',
           header: this.i18n.service.translate('impressions', lang),
           pipe: 'number',
           type: 'link',
-          typeParams: { preLink: '/' + this.langLink + '/pages', link: '_id', postLink: 'searchanalytics' },
+          typeParams: {
+            preLink: '/' + this.langLink + '/pages',
+            link: '_id',
+            postLink: 'searchanalytics',
+          },
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'gscTotalCtr',
           header: this.i18n.service.translate('ctr', lang),
           pipe: 'percent',
+          filterConfig: {
+            type: 'percent',
+          },
         },
         {
           field: 'gscTotalPosition',
           header: this.i18n.service.translate('position', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
         // { field: 'percentChange', header: this.i18n.service.translate('comparison-for-clicks', lang), pipe: 'percent' },
       ];

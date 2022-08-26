@@ -6,8 +6,14 @@ import { EN_CA } from '@dua-upd/upd/i18n';
 import { GetTableProps } from '@dua-upd/utils-common';
 import { combineLatest } from 'rxjs';
 
-type FeedbackCommentsColType = GetTableProps<TaskDetailsFeedbackComponent, 'feedbackComments$'>
-type FeedbackByTagsColTypes = GetTableProps<TaskDetailsFeedbackComponent, 'feedbackByTagsTable$'>
+type FeedbackCommentsColType = GetTableProps<
+  TaskDetailsFeedbackComponent,
+  'feedbackComments$'
+>;
+type FeedbackByTagsColTypes = GetTableProps<
+  TaskDetailsFeedbackComponent,
+  'feedbackByTagsTable$'
+>;
 
 @Component({
   selector: 'upd-task-details-feedback',
@@ -53,16 +59,25 @@ export class TaskDetailsFeedbackComponent implements OnInit {
           header: this.i18n.service.translate('URL', lang),
           type: 'link',
           typeParams: { preLink: `/${this.langLink}/pages`, link: '_id' },
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'dyfYes',
           header: this.i18n.service.translate('yes', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'dyfNo',
           header: this.i18n.service.translate('No', lang),
           pipe: 'number',
+          filterConfig: {
+            type: 'number',
+          },
         },
         // {
         //   field: '0',
@@ -102,10 +117,20 @@ export class TaskDetailsFeedbackComponent implements OnInit {
 
       this.feedbackCommentsCols = [
         { field: 'url', header: this.i18n.service.translate('URL', lang) },
-        { field: 'date', header: this.i18n.service.translate('date', lang), pipe: 'date' },
+        {
+          field: 'date',
+          header: this.i18n.service.translate('date', lang),
+          pipe: 'date',
+        },
         { field: 'tag', header: this.i18n.service.translate('tags', lang) },
-        { field: 'whats_wrong', header: this.i18n.service.translate('d3-www', lang) },
-        { field: 'comment', header: this.i18n.service.translate('comment', lang) },
+        {
+          field: 'whats_wrong',
+          header: this.i18n.service.translate('d3-www', lang),
+        },
+        {
+          field: 'comment',
+          header: this.i18n.service.translate('comment', lang),
+        },
       ];
 
       this.feedbackByTagsTableCols = [

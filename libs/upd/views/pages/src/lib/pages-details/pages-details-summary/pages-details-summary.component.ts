@@ -7,9 +7,15 @@ import { GetTableProps } from '@dua-upd/utils-common';
 import { PagesDetailsFacade } from '../+state/pages-details.facade';
 import { _DisposeViewRepeaterStrategy } from '@angular/cdk/collections';
 
-type TasksTableColTypes = GetTableProps<PagesDetailsSummaryComponent, 'tasks$'>
-type BarTableColTypes = GetTableProps<PagesDetailsSummaryComponent, 'barTable$'>
-type VisitsByDeviceColTypes = GetTableProps<PagesDetailsSummaryComponent, 'visitsByDeviceTypeTable$'>
+type TasksTableColTypes = GetTableProps<PagesDetailsSummaryComponent, 'tasks$'>;
+type BarTableColTypes = GetTableProps<
+  PagesDetailsSummaryComponent,
+  'barTable$'
+>;
+type VisitsByDeviceColTypes = GetTableProps<
+  PagesDetailsSummaryComponent,
+  'visitsByDeviceTypeTable$'
+>;
 
 @Component({
   selector: 'upd-page-details-summary',
@@ -77,12 +83,18 @@ export class PagesDetailsSummaryComponent implements OnInit {
         {
           field: 'term',
           header: this.i18n.service.translate('search-term', lang),
+          filterConfig: {
+            type: 'text',
+          },
         },
         {
           field: 'impressions',
           header: this.i18n.service.translate('impressions', lang),
           pipe: 'number',
           pipeParam: '1.0-2',
+          filterConfig: {
+            type: 'number',
+          },
         },
         {
           field: 'change',
@@ -93,16 +105,25 @@ export class PagesDetailsSummaryComponent implements OnInit {
           field: 'ctr',
           header: this.i18n.service.translate('ctr', lang),
           pipe: 'percent',
+          filterConfig: {
+            type: 'percent',
+          },
         },
         {
           field: 'position',
           header: this.i18n.service.translate('position', lang),
           pipe: 'number',
           pipeParam: '1.0-2',
+          filterConfig: {
+            type: 'number',
+          },
         },
       ];
       this.barTableCols = [
-        { field: 'name', header: this.i18n.service.translate('Dates', lang) },
+        {
+          field: 'name',
+          header: this.i18n.service.translate('Dates', lang),
+        },
         {
           field: 'currValue',
           header: this.i18n.service.translate('Visits for ', lang, {
@@ -132,9 +153,11 @@ export class PagesDetailsSummaryComponent implements OnInit {
           header: this.i18n.service.translate('Task', lang),
           type: 'link',
           typeParams: {
-            preLink: '/' + this.langLink + '/tasks', link: '_id'
-          }
-        }];
+            preLink: '/' + this.langLink + '/tasks',
+            link: '_id',
+          },
+        },
+      ];
     });
   }
 }
